@@ -1,0 +1,67 @@
+﻿@page "/Categories"
+@using Site.Shared.Dto
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">Categories</h1>
+            <button class="btn btn-primary btn-lg btn-block" title="Load Categories" @onclick="GetCategoriesData">Load Categories</button>
+        </div>
+    </div>
+
+    @if (TableData != null)
+    {
+        <div class="row mt-4">
+            @foreach (var category in TableData)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@category.CategoryPhoto" class="card-img-top" alt="@category.CategoryName">
+                        <div class="card-body">
+                            <h5 class="card-title">@category.CategoryName</h5>
+                            <button @onclick="() => ShowProductsByCategory(category.CategoryName)" class="btn btn-primary">View</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Category> TableData { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCategoriesData();
+    }
+
+    public async Task GetCategoriesData()
+    {
+        try
+        {
+            var response = await Http.GetFromJsonAsync<List<Category>>("Categories");
+
+            if (response != null)
+            {
+                TableData = response.OrderBy(x => x.CategoryId).ToList();
+            }
+            else
+            {
+                Console.WriteLine("Failed to fetch data. No data available");
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"HttpRequestException: {e.Message}");
+        }
+    }
+
+    private void ShowProductsByCategory(string categoryName)
+    {
+        Navigation.NavigateTo($"/products/{categoryName}");
+    }
+
+}

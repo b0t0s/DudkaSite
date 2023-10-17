@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Client\Presentation\Site.Client.csproj" />
+    <ProjectReference Include="..\..\Shared\Site.Shared.csproj" />
+    <ProjectReference Include="..\Application\Site.Server.Application.csproj" />
+    <ProjectReference Include="..\Domain\Site.Server.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Site.Server.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,43 @@
+﻿@page "/ProductsTable"
+@using Site.Shared.Dto
+
+<div class="container mt-4">
+    @if (TableData != null && TableData.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Items Category</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in TableData)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.CategoryName</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No data available.</p>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public List<Products>? TableData { get; set; }
+
+}

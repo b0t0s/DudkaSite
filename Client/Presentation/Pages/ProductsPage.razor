@@ -1,0 +1,66 @@
+﻿@page "/Products"
+@using Site.Shared.Dto
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">Products</h1>
+            <button class="btn btn-primary btn-lg btn-block" title="Load Products" @onclick="GetProductsData">Load Products</button>
+        </div>
+    </div>
+
+    @if (TableData != null)
+    {
+        <div class="row mt-4">
+            <div class="col-md-12 mb-4">
+                <div class="filter-widget">
+                    <label><input type="checkbox" value="Filter1"> Filter1</label>
+                    <label><input type="checkbox" value="Filter2"> Filter2</label>
+                    <!-- Add more filters as needed -->
+                </div>
+            </div>
+
+            @foreach (var product in TableData)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@product.Photo" class="card-img-top" alt="@product.ProductName">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text">@product.ProductName</p>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Products> TableData { get; set; } = new();
+
+    public async Task GetProductsData()
+    {
+        try
+        {
+            var response = await Http.GetFromJsonAsync<List<Products>>("Categories");
+
+            if (response != null)
+            {
+                TableData = response.OrderBy(x => x.SortOrder).ToList();
+            }
+            else
+            {
+                Console.WriteLine("Failed to fetch data. No data available");
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"HttpRequestException: {e.Message}");
+        }
+    }
+
+}
