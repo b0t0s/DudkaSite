@@ -34,15 +34,15 @@
                 flex-direction: row;
             }
 
-        .index-container .SlidesContainer .slider-wrap .slide .text-container {
-            flex: 1; /* Allows it to occupy available space but can be overridden by image-container's flex-grow */
-            padding: 20px; /* Optional padding for aesthetics */
-        }
+                .index-container .SlidesContainer .slider-wrap .slide .content-wrap .text-container {
+                    flex: 1; /* Allows it to occupy available space but can be overridden by image-container's flex-grow */
+                    padding: 20px; /* Optional padding for aesthetics */
+                }
 
-        .index-container .SlidesContainer .slider-wrap .slide .image-container {
-            flex-grow: 1; /* Makes it flexible in terms of width */
-            max-width: 50%; /* Optional constraint for maximum width */
-        }
+                .index-container .SlidesContainer .slider-wrap .slide .content-wrap .image-container {
+                    flex-grow: 1; /* Makes it flexible in terms of width */
+                    max-width: 50%; /* Optional constraint for maximum width */
+                }
 
     .index-container .slider-btn {
         position: absolute; /* Take out of the normal flow */
