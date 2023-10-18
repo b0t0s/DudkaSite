@@ -12,15 +12,34 @@
     .index-container .SlidesContainer {
         position: relative; /* This allows you to position child elements (the buttons) absolutely */
         display: flex;
+        overflow: hidden; /* This will hide slides that are out of the viewport */
         flex-direction: row;
     }
 
-        .index-container .SlidesContainer .text-container {
+        .index-container .SlidesContainer .slider-wrap {
+            display: flex;
+            transition: transform 0.5s ease; /* This provides the sliding effect */
+        }
+
+        .index-container .SlidesContainer .slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+            .index-container .SlidesContainer .slide .content-wrap {
+                display: flex;
+                flex-direction: row;
+            }
+
+        .index-container .SlidesContainer .slider-wrap .slide .text-container {
             flex: 1; /* Allows it to occupy available space but can be overridden by image-container's flex-grow */
             padding: 20px; /* Optional padding for aesthetics */
         }
 
-        .index-container .SlidesContainer .image-container {
+        .index-container .SlidesContainer .slider-wrap .slide .image-container {
             flex-grow: 1; /* Makes it flexible in terms of width */
             max-width: 50%; /* Optional constraint for maximum width */
         }
@@ -51,8 +70,7 @@
         right: 30px; /* Slightly outside the SlidesContainer on the right */
     }
 
-        .index-container .slider-btn:hover {
-            background: rgba(255, 255, 255, 0.9); /* Lighter on hover */
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
-        }
-
+    .index-container .slider-btn:hover {
+        background: rgba(255, 255, 255, 0.9); /* Lighter on hover */
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+    }

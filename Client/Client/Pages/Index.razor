@@ -6,33 +6,40 @@
     <button @onclick="PreviousSlide" class="slider-btn slider-btn-prev">◀ </button>
 
     <div class="SlidesContainer">
-        
-        @if (Slides != null && Slides.Any() && _index >= 0 && _index < Slides.Count)
+        @if (Slides != null && Slides.Any())
         {
-            <div class="text-container">
-                <h1 class="display-4 fw-bold lh-1 text-body-emphasis">@Slides[_index].Title</h1>
-                <h1 class="display-3 fw-bold lh-1 text-body-emphasis">@Slides[_index].SubTitle</h1>
-                <p class="lead">@Slides[_index].Description</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-                </div>
-            </div>
-
-            <div class="image-container col-lg-8 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                <img class="rounded-lg-3" src="@Slides[_index].ImageSrc" alt="" style="max-width: 100%; height: auto;">
+            <div class="slider-wrap" style="transform: translateX(-@(_index * 100)%)">
+                @foreach (var slide in Slides)
+                {
+                    <div class="slide">
+                        <div class="content-wrap">
+                            <div class="text-container">
+                                <h1 class="display-4 fw-bold lh-1 text-body-emphasis">@slide.Title</h1>
+                                <h1 class="display-3 fw-bold lh-1 text-body-emphasis">@slide.SubTitle</h1>
+                                <p class="lead">@slide.Description</p>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                                </div>
+                            </div>
+                            <div class="image-container col-lg-8 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                                <img class="rounded-lg-3" src="@slide.ImageSrc" alt="" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         }
         else
         {
             <div>Error: Slide data is not available.</div>
         }
-
     </div>
 
     <button @onclick="NextSlide" class="slider-btn slider-btn-next"> ▶</button>
 
 </div>
+
 
 @code {
 
