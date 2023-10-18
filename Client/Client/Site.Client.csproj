@@ -7,19 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Index.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.10" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Site.Shared.csproj" />
-    <ProjectReference Include="..\..\Site.Client.Domain\Site.Client.Domain.csproj" />
+    <ProjectReference Include="..\Domain\Site.Client.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Site.Client.Infrastructure\Site.Client.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\css\bootstrap\" />
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\Index.razor.css" />
   </ItemGroup>
 
 </Project>

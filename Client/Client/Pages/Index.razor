@@ -1,0 +1,72 @@
+﻿@page "/"
+@using Site.Client.Domain
+
+<div class="index-container">
+
+    <button @onclick="PreviousSlide" class="slider-btn slider-btn-prev">◀ </button>
+
+    <div class="SlidesContainer">
+        
+        @if (Slides != null && Slides.Any() && _index >= 0 && _index < Slides.Count)
+        {
+            <div class="text-container">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis">@Slides[_index].Title</h1>
+                <h1 class="display-3 fw-bold lh-1 text-body-emphasis">@Slides[_index].SubTitle</h1>
+                <p class="lead">@Slides[_index].Description</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                </div>
+            </div>
+
+            <div class="image-container col-lg-8 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                <img class="rounded-lg-3" src="@Slides[_index].ImageSrc" alt="" style="max-width: 100%; height: auto;">
+            </div>
+        }
+        else
+        {
+            <div>Error: Slide data is not available.</div>
+        }
+
+    </div>
+
+    <button @onclick="NextSlide" class="slider-btn slider-btn-next"> ▶</button>
+
+</div>
+
+@code {
+
+    private int _index = 0;
+
+    public List<SliderData> Slides = new List<SliderData>()
+    {
+        new SliderData(title: "XROS 3", subTitle: "Cross The Limits", description: "THE XROS 3 IS THE NEW BEST POD IN XROS FAMILY,PERFECT CHOICE FOR FLAVOR AND CONSISTENCY FROM TIGHT MTL TO RDL EXPERIENCE", imageSrc: "https://www.vaporesso.com/hubfs/imgs/2022/pro/series/xros3/rotate3/XROS_0002.png"),
+        new SliderData(title: "LUXE Q2 SE", subTitle: "Quality Touch, Quality Vape", description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.", imageSrc: "https://www.vaporesso.com/hubfs/imgs/2023/pro/luxe-q2-se/rotate/LUXEQ2SE30.png"),
+        new SliderData(title: "ECO NANO ", subTitle: "", description: "ECO NANO is an ultimate MTL Pod system best for starters", imageSrc: "https://www.vaporesso.com/hubfs/imgs/2023/pro/eco-nano/rotate/ECO%20%20NANO.2488.16.png"),
+        new SliderData(title: "GEN PT60 I 80S", subTitle: "Beat The Tank", description: "The GEN PT60/80S are the two new pod mods in GEN family designed for DTL users. It’s equipped with the new xTank pod. With Double Top System and SSS Leak-Resistant Technology, it gives a Quadra leak resistance, better than a tank.The COREX inside – a flavor boosting technology, increases the flavor and the lifespan of GTX coil with innovation on the cotton and the MESH. It can also be fully compatible with the whole coil platform. ", imageSrc: "https://www.vaporesso.com/hubfs/imgs/2022/pro/series/gen-pt60-80s/360/GEN%20PT60.4864.2.png"),
+    };
+
+    private void PreviousSlide()
+    {
+        if (_index > 0)  // Ensure it's not the first item
+        {
+            _index--;
+        }
+        else
+        {
+            _index = Slides.Count -1;
+        }
+    }
+
+    private void NextSlide()
+    {
+        if (_index < Slides.Count - 1)  // Ensure it's not the last item
+        {
+            _index++;
+        }
+        else
+        {
+            _index = 0;
+        }
+    }
+}

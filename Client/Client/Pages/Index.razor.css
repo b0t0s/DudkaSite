@@ -1,0 +1,58 @@
+﻿.index-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 25px;
+    overflow-y: hidden;
+    align-items: center; /* If you want both containers to be vertically centered */
+    justify-content: space-around; /* Adjusts for space between text and image */
+}
+
+    .index-container .SlidesContainer {
+        position: relative; /* This allows you to position child elements (the buttons) absolutely */
+        display: flex;
+        flex-direction: row;
+    }
+
+        .index-container .SlidesContainer .text-container {
+            flex: 1; /* Allows it to occupy available space but can be overridden by image-container's flex-grow */
+            padding: 20px; /* Optional padding for aesthetics */
+        }
+
+        .index-container .SlidesContainer .image-container {
+            flex-grow: 1; /* Makes it flexible in terms of width */
+            max-width: 50%; /* Optional constraint for maximum width */
+        }
+
+    .index-container .slider-btn {
+        position: absolute; /* Take out of the normal flow */
+        top: 50%; /* Position at the vertical center */
+        transform: translateY(-50%); /* Center vertically */
+        background: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 50%;
+        width: 50px; /* Slightly bigger for better visibility */
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px; /* Increase font size */
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    .index-container .slider-btn-prev {
+        left: 30px; /* Slightly outside the SlidesContainer on the left */
+    }
+
+    .index-container .slider-btn-next {
+        right: 30px; /* Slightly outside the SlidesContainer on the right */
+    }
+
+        .index-container .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.9); /* Lighter on hover */
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+        }
+

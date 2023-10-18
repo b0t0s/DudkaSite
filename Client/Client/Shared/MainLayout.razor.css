@@ -1,0 +1,64 @@
+.page {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    background-image: url('/images/logo_DudkaHub_4k.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    width: 95vw;
+    margin: 15px;
+    opacity: 0.2;
+
+    border-radius: 25px;
+    justify-content: space-between;
+
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-image: url('/images/header_smoke.gif');
+}
+
+.horizontal-divider {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+main {
+    display: flex;
+    height: 88vh;
+    width: 95vw;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    background: rgba(0,0,0,0.8); /* Adds a semi-transparent black background */
+}
+
+    main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, transparent, rgba(0,0,0,0.8) 80%); /* Radial gradient that goes from transparent in the center to a more pronounced black at the edges. You can adjust as necessary. */
+        backdrop-filter: blur(10px); /* Blurs whatever is behind this element */
+        z-index: -1; /* Makes sure the blurred overlay is behind the content */
+    }

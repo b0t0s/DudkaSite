@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Client\Presentation\Site.Client.csproj" />
+    <ProjectReference Include="..\..\Client\Client\Site.Client.csproj" />
     <ProjectReference Include="..\..\Shared\Site.Shared.csproj" />
     <ProjectReference Include="..\Application\Site.Server.Application.csproj" />
     <ProjectReference Include="..\Domain\Site.Server.Domain.csproj" />
