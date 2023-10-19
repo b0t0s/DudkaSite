@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Site.Shared;
 
@@ -15,23 +16,25 @@ public class StringToNumericConverter : JsonConverter
         JToken token = JToken.Load(reader);
         if (token.Type == JTokenType.String)
         {
+            string tokenValue = token.ToString();
+
             if (objectType == typeof(int))
-                return int.Parse(token.ToString());
+                return (int)double.Parse(tokenValue, CultureInfo.InvariantCulture);
 
             if (objectType == typeof(long))
-                return long.Parse(token.ToString());
+                return (long)double.Parse(tokenValue, CultureInfo.InvariantCulture);
 
             if (objectType == typeof(double))
-                return double.Parse(token.ToString());
+                return double.Parse(tokenValue, CultureInfo.InvariantCulture);
 
             if (objectType == typeof(decimal))
-                return decimal.Parse(token.ToString());
+                return decimal.Parse(tokenValue, CultureInfo.InvariantCulture);
 
             if (objectType == typeof(float))
-                return float.Parse(token.ToString());
+                return float.Parse(tokenValue, CultureInfo.InvariantCulture);
 
             if (objectType == typeof(short))
-                return short.Parse(token.ToString());
+                return (short)double.Parse(tokenValue, CultureInfo.InvariantCulture);
         }
         return token.ToObject(objectType);
     }

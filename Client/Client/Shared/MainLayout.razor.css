@@ -7,35 +7,41 @@
     height: 100vh;
     width: 100vw;
     align-items: center;
-    background-image: url('/images/logo_DudkaHub_4k.png');
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-image: url('/images/logo_background.png');
 }
+
+    .page::after {
+        content: ""; /* This is mandatory for the pseudo-element to be displayed */
+        position: absolute; /* Absolute positioning to cover the entire header */
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.5; /* This will only affect the background image */
+        border-radius: inherit; /* Inherit the border-radius from the header */
+
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-image: url('/images/header_smoke.gif');
+        z-index: -1; /* This will push the background behind the contents of the header */
+    }
+
 
 header {
     display: flex;
     width: 95vw;
-    margin: 15px;
-    opacity: 0.2;
-
     border-radius: 25px;
-    justify-content: space-between;
-
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-image: url('/images/header_smoke.gif');
 }
+
 
 .horizontal-divider {
     display: flex;
     width: 100%;
     height: 3rem;
-    background-color: rgba(0, 0, 0, .1);
-    border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
-    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }
 
 main {
